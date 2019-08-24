@@ -23,10 +23,25 @@ class Color extends Component {
 
 class ColorSquare extends Component {
 	render() {
+		const { selected, onSelect, number } = this.props;
+
+		const style = {
+			width: 200 + number * 10,
+			height: 200 + number * 10
+		};
+
 		return (
-			<div className="ColorSquare">
+			<div className="ColorSquare" style={style}>
 				{colors.map(color => {
-					return <Color key={color} color={color} />;
+					return (
+						<Color
+							key={color}
+							color={color}
+							active={selected === color}
+							onClick={() => onSelect(color)}
+							number={number}
+						/>
+					);
 				})}
 			</div>
 		);
